@@ -38,6 +38,14 @@ gradlePlugin {
             id = "cuju.android.application.compose"
             implementationClass = "CujuAndroidApplicationConventionPlugin"
         }
+        register("androidLibrary") {
+            id = "cuju.android.library"
+            implementationClass = "CujuAndroidLibraryConventionPlugin"
+        }
+        register("androidCameraLibrary") {
+            id = "cuju.android.camera.library"
+            implementationClass = "CujuAndroidCameraLibraryConventionPlugin"
+        }
         register("androidLint") {
             id = "cuju.android.lint"
             implementationClass = "common.AndroidLintConventionPlugin"
