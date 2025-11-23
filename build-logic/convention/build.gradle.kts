@@ -38,6 +38,10 @@ gradlePlugin {
             id = "cuju.android.application.compose"
             implementationClass = "CujuAndroidApplicationConventionPlugin"
         }
+        register("androidLibrary") {
+            id = "cuju.android.library"
+            implementationClass = "CujuAndroidLibraryConventionPlugin"
+        }
         register("androidLint") {
             id = "cuju.android.lint"
             implementationClass = "common.AndroidLintConventionPlugin"

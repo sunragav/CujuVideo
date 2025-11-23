@@ -67,6 +67,7 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -77,5 +78,6 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 
 # Local convention plugins registered in this project
 cuju-android-application-compose = { id = "cuju.android.application.compose", version = "unspecified" }
+cuju-android-library = { id = "cuju.android.library", version = "unspecified" }
 cuju-android-lint = { id = "cuju.android.lint", version = "unspecified" }
 cuju-kotlin-detekt = { id = "cuju.kotlin.detekt", version = "unspecified" }
