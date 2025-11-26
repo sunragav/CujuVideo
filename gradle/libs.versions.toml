@@ -110,6 +110,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 # Local convention plugins registered in this project
 cuju-android-application-compose = { id = "cuju.android.application.compose", version = "unspecified" }
 cuju-android-library = { id = "cuju.android.library", version = "unspecified" }
-cuju-android-camera-library = { id = "cuju.android.camera.library", version = "unspecified" }
 cuju-android-lint = { id = "cuju.android.lint", version = "unspecified" }
 cuju-kotlin-detekt = { id = "cuju.kotlin.detekt", version = "unspecified" }
