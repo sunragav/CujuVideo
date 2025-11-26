@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "CujuVideo"
 include(":app")
+include(":camera")
+include(":ui")

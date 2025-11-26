@@ -13,6 +13,7 @@ internal fun Project.configureAndroidCompose(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
     commonExtension.apply {
+        namespace = "com.cuju.video"
         buildFeatures {
             compose = true
         }
@@ -31,6 +32,8 @@ internal fun Project.configureAndroidCompose(
             add("implementation", libs.findLibrary("androidx-navigation-compose").get())
             add("implementation", libs.findLibrary("androidx-paging-compose").get())
             add("implementation", libs.findLibrary("androidx-compose-ui-viewbinding").get())
+            add("implementation", libs.findLibrary("androidx-adaptive-android").get())
+            add("implementation", libs.findLibrary("compose-material-icons").get())
             add(
                 "androidTestImplementation",
                 libs.findLibrary("androidx-compose-ui-test-junit4").get()
