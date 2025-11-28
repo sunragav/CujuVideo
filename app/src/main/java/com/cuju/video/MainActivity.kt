@@ -6,22 +6,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.cuju.ui.components.CjDropDownMenu
 import com.cuju.ui.components.CjLargeButton
-import com.cuju.ui.components.CjTitleSmall
 import com.cuju.ui.theme.CujuVideoTheme
 import com.cuju.videoplayer.VideoPlayer
 import java.io.File
@@ -47,26 +44,19 @@ class MainActivity : ComponentActivity() {
                         }
 
                         Box(Modifier.fillMaxWidth()) {
-                            DropdownMenu(
+                            CjDropDownMenu(
+                                modifier = Modifier.fillMaxWidth(),
                                 expanded = expanded,
-                                onDismissRequest = { expanded = false },
-                            ) {
-                                items.forEachIndexed { index, s ->
-                                    DropdownMenuItem(
-                                        text = {
-                                            CjTitleSmall(
-                                                text = s,
-                                                color = if (index % 2 == 0) CujuVideoTheme.colorScheme.contentPrimary else CujuVideoTheme.colorScheme.contentInversePrimary,
-                                                modifier = Modifier.background(color = if (index % 2 == 0) CujuVideoTheme.colorScheme.backgroundPrimary else CujuVideoTheme.colorScheme.backgroundInversePrimary)
-                                            )
-                                        },
-                                        onClick = {
-                                            selectedIndex = index
-                                        },
-                                        enabled = true,
-                                    )
+                                items = items,
+                                selectedIndex = selectedIndex,
+                                onItemSelected = {
+                                    selectedIndex = it
+                                    expanded = false
+                                },
+                                onDismissRequest = {
+                                    expanded = false
                                 }
-                            }
+                            )
                             CjLargeButton(
                                 text = "SELECT",
                                 onClick = {
