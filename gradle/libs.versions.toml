@@ -25,6 +25,8 @@ cameraX = "1.5.1"
 adaptiveAndroid = "1.2.0"
 coroutinesVersion = "1.9.0"
 accompanist = "0.32.0"
+media3 = "1.5.0"
+media3-ui-compose = "1.7.1"
 
 # plugins
 detektPluginVersion = "1.23.8"
@@ -82,6 +84,13 @@ androidx-camera-extensions = { group = "androidx.camera", name = "camera-extensi
 
 androidx-adaptive-android = { group = "androidx.compose.material3.adaptive", name = "adaptive-layout", version.ref = "adaptiveAndroid" }
 
+# player
+media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3" }
+media3-effect = { group = "androidx.media3", name = "media3-effect", version.ref = "media3" }
+media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3" }
+media3-transformer = { group = "androidx.media3", name = "media3-transformer", version.ref = "media3" }
+media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3" }
+media3-ui-compose = { group = "androidx.media3", name = "media3-ui-compose", version.ref = "media3-ui-compose" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -111,5 +120,6 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 cuju-android-application-compose = { id = "cuju.android.application.compose", version = "unspecified" }
 cuju-android-library = { id = "cuju.android.library", version = "unspecified" }
 cuju-android-camera-library = { id = "cuju.android.camera.library", version = "unspecified" }
+cuju-android-video-player-library = { id = "cuju.android.video.player", version = "unspecified" }
 cuju-android-lint = { id = "cuju.android.lint", version = "unspecified" }
 cuju-kotlin-detekt = { id = "cuju.kotlin.detekt", version = "unspecified" }

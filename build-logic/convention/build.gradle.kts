@@ -46,6 +46,10 @@ gradlePlugin {
             id = "cuju.android.camera.library"
             implementationClass = "CujuAndroidCameraLibraryConventionPlugin"
         }
+        register("androidVideoPlayerLibrary") {
+            id = "cuju.android.video.player"
+            implementationClass = "CujuAndroidVideoPlayerConventionPlugin"
+        }
         register("androidLint") {
             id = "cuju.android.lint"
             implementationClass = "common.AndroidLintConventionPlugin"
