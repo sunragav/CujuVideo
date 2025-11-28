@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-package common
+package ext
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import org.gradle.api.Project

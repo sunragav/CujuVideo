@@ -17,8 +17,8 @@ object CjButtonDefaults {
 
     @Composable
     fun filledTonalButtonColors() = ButtonDefaults.filledTonalButtonColors().copy(
-        containerColor = MaterialTheme.colorScheme.secondaryContainer,
-        contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+        containerColor = MaterialTheme.colorScheme.background,
+        contentColor = MaterialTheme.colorScheme.primary,
     )
 
     @Composable

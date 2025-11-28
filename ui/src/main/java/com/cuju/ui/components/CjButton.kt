@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,6 +23,7 @@ import com.cuju.ui.ButtonSmallShapeCornerSize
 fun CjLargeButton(
     modifier: Modifier = Modifier,
     shape: Shape = CjButtonDefaults.shape(),
+    elevation: ButtonElevation = ButtonDefaults.buttonElevation(),
     colors: ButtonColors = CjButtonDefaults.buttonColors(),
     text: String? = null,
     enabled: Boolean = true,
@@ -31,6 +33,7 @@ fun CjLargeButton(
 ) {
     Button(
         modifier = modifier, colors = colors,
+        elevation = elevation,
         shape = shape,
         enabled = enabled,
         contentPadding = contentPadding,
@@ -42,21 +45,24 @@ fun CjLargeButton(
 @Composable
 fun CjButtonSmallRounded(
     modifier: Modifier = Modifier,
+    shape: Shape = RoundedCornerShape(size = ButtonSmallShapeCornerSize),
     colors: ButtonColors = CjButtonDefaults.filledTonalButtonColors(),
-    text: String,
+    elevation: ButtonElevation = ButtonDefaults.buttonElevation(),
+    text: String? = null,
     enabled: Boolean = true,
     onClick: () -> Unit,
+    content: @Composable RowScope.() -> Unit = { text?.let { CjTitleSmall(text = text) } }
 ) {
     Button(
         modifier = modifier
             .heightIn(min = ButtonSmallHeight)
             .padding(vertical = ButtonSmallPaddingVertical),
         colors = colors,
-        shape = RoundedCornerShape(size = ButtonSmallShapeCornerSize),
+        elevation = elevation,
+        shape = shape,
         contentPadding = PaddingValues(horizontal = ButtonSmallContentPaddingHorizontal),
         enabled = enabled,
         onClick = onClick,
-    ) {
-        CjTitleSmall(text = text)
-    }
+        content = content
+    )
 }
