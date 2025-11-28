@@ -24,3 +24,5 @@ rootProject.name = "CujuVideo"
 include(":app")
 include(":ui")
 include(":videoplayer")
+include(":core")
+include(":explorer")

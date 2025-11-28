@@ -2,9 +2,10 @@
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import common.disableUnnecessaryAndroidTests
 import ext.configureCoroutines
+import ext.configureKoin
 import ext.configureKotlinAndroid
+import ext.disableUnnecessaryAndroidTests
 import ext.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -28,6 +29,7 @@ class CujuAndroidLibraryConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 configureAndroidCompose(this)
                 configureCoroutines(this)
+                configureKoin(this)
                 defaultConfig.targetSdk =
                     libs.findVersion("targetSdkVersion").get().toString().toInt()
                 defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

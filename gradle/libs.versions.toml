@@ -27,6 +27,9 @@ coroutinesVersion = "1.9.0"
 accompanist = "0.32.0"
 media3 = "1.5.0"
 media3-ui-compose = "1.7.1"
+koin = "4.1.0"
+startupRuntime = "1.2.0"
+fastscrollerCore = "0.3.2"
 
 # plugins
 detektPluginVersion = "1.23.8"
@@ -104,6 +107,21 @@ androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime
 
 # permissions
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
+
+# koin
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
+
+# android context initializer
+androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
+
+# scroll
+fastscroller-core = { module = "io.github.oikvpqya.compose.fastscroller:fastscroller-core", version.ref = "fastscrollerCore" }
+fastscroller-indicator = { module = "io.github.oikvpqya.compose.fastscroller:fastscroller-indicator", version.ref = "fastscrollerCore" }
+fastscroller-material = { module = "io.github.oikvpqya.compose.fastscroller:fastscroller-material", version.ref = "fastscrollerCore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
