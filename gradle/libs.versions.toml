@@ -26,10 +26,12 @@ adaptiveAndroid = "1.2.0"
 coroutinesVersion = "1.9.0"
 accompanist = "0.32.0"
 media3 = "1.5.0"
-media3-ui-compose = "1.7.1"
-koin = "4.1.0"
+media3-ui-compose = "1.8.0"
+koin = "4.1.1"
 startupRuntime = "1.2.0"
 fastscrollerCore = "0.3.2"
+roomVersion = "2.8.4"
+junit5Version = "6.0.1"
 
 # plugins
 detektPluginVersion = "1.23.8"
@@ -67,7 +69,6 @@ androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lif
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serializationVersion" }
 
 ksp-symbol-processing = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "kspVersion" }
-ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "kspVersion" }
 
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detektVersion" }
 
@@ -101,6 +102,8 @@ detekt-gradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plug
 compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "kspVersion" }
+room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "roomVersion" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
@@ -123,6 +126,20 @@ fastscroller-core = { module = "io.github.oikvpqya.compose.fastscroller:fastscro
 fastscroller-indicator = { module = "io.github.oikvpqya.compose.fastscroller:fastscroller-indicator", version.ref = "fastscrollerCore" }
 fastscroller-material = { module = "io.github.oikvpqya.compose.fastscroller:fastscroller-material", version.ref = "fastscrollerCore" }
 
+# room
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
+room-paging = { group = "androidx.room", name = "room-paging", version.ref = "roomVersion" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "roomVersion" }
+
+# junit
+junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5Version" }
+junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5Version" }
+junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit5Version" }
+junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junit5Version" }
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
@@ -133,11 +150,27 @@ kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref =
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektPluginVersion" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+room = { id = "androidx.room", version.ref = "roomVersion" }
 
 # Local convention plugins registered in this project
 cuju-android-application-compose = { id = "cuju.android.application.compose", version = "unspecified" }
 cuju-android-library = { id = "cuju.android.library", version = "unspecified" }
 cuju-android-camera-library = { id = "cuju.android.camera.library", version = "unspecified" }
 cuju-android-video-player-library = { id = "cuju.android.video.player", version = "unspecified" }
+cuju-android-room-library = { id = "cuju.android.room", version = "unspecified" }
 cuju-android-lint = { id = "cuju.android.lint", version = "unspecified" }
 cuju-kotlin-detekt = { id = "cuju.kotlin.detekt", version = "unspecified" }
+
+
+[bundles]
+room-api = [
+    "room-runtime",
+    "room-ktx",
+    "room-paging"
+]
+
+jupiter-test-implementation = [
+    "junit-jupiter-api",
+    "junit-jupiter-engine",
+    "junit-jupiter-params",
+]

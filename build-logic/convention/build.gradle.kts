@@ -21,6 +21,7 @@ kotlin {
 
 dependencies {
     compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.room.gradlePlugin)
     compileOnly(libs.detekt.gradlePlugin)
     compileOnly(libs.compose.compiler.gradle.plugin)
     compileOnly(libs.kotlin.gradlePlugin)
@@ -49,6 +50,10 @@ gradlePlugin {
         register("androidVideoPlayerLibrary") {
             id = "cuju.android.video.player"
             implementationClass = "CujuAndroidVideoPlayerConventionPlugin"
+        }
+        register("androidRoom") {
+            id = "cuju.android.room"
+            implementationClass = "CujuAndroidRoomDatabaseConventionPlugin"
         }
         register("androidLint") {
             id = "cuju.android.lint"
