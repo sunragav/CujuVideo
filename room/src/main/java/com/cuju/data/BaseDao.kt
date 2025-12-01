@@ -2,6 +2,8 @@ package com.cuju.data
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.RawQuery
 import androidx.room.Transaction
 import androidx.room.Upsert
@@ -15,9 +17,11 @@ abstract class BaseDao<T> {
 
     // table name is the same as the DAO entity class name
     private val tableName get() = this::class.getSuperclassTypeArgumentAsSimpleName(BaseDao::class)
-
     @Upsert
     abstract suspend fun upsert(obj: T)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    abstract suspend fun insertOrIgnore(obj: List<T>)
 
     @Upsert
     abstract suspend fun upsert(obj: List<T>)

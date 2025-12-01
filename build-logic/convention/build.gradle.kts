@@ -55,6 +55,10 @@ gradlePlugin {
             id = "cuju.android.room"
             implementationClass = "CujuAndroidRoomDatabaseConventionPlugin"
         }
+        register("lokalise") {
+            id = "cuju.lokalise"
+            implementationClass = "CujuLokaliseConventionPlugin"
+        }
         register("androidLint") {
             id = "cuju.android.lint"
             implementationClass = "common.AndroidLintConventionPlugin"

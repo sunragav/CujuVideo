@@ -10,6 +10,7 @@ internal fun Project.configureKoin(
     commonExtension.apply {
         dependencies {
             add("implementation", libs.findLibrary("koin-android").get())
+            add("implementation", libs.findLibrary("koin-androidx-workmanager").get())
             add("implementation", libs.findLibrary("koin-androidx-compose").get())
             add("implementation", libs.findLibrary("koin-core").get())
             add("implementation", libs.findLibrary("koin-compose").get())

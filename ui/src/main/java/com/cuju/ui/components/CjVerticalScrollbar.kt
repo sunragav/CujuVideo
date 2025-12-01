@@ -8,7 +8,7 @@ import io.github.oikvpqya.compose.fastscroller.VerticalScrollbar
 
 @Composable
 fun CjVerticalScrollbar(
-    modifier: Modifier = Modifier.Companion,
+    modifier: Modifier = Modifier,
     adapter: ScrollbarAdapter,
     enablePressToScroll: Boolean = false
 ) {

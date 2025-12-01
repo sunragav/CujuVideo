@@ -24,6 +24,7 @@ class CujuAndroidLibraryConventionPlugin : Plugin<Project> {
                 apply("cuju.android.lint")
                 apply("cuju.kotlin.detekt")
                 apply("org.jetbrains.kotlin.plugin.compose")
+                apply("cuju.lokalise")
             }
 
             extensions.configure<LibraryExtension> {
