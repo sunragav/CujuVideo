@@ -2,6 +2,7 @@ import com.android.build.api.dsl.ApplicationExtension
 import ext.buildTypeConfig
 import ext.computeVersionCode
 import ext.computeVersionName
+import ext.configureKoin
 import ext.configureKotlinAndroid
 import ext.defaultBuildConfigFields
 import ext.libs
@@ -23,12 +24,14 @@ class CujuAndroidApplicationConventionPlugin : Plugin<Project> {
                 apply("org.jetbrains.kotlin.plugin.parcelize")
                 apply("cuju.android.lint")
                 apply("cuju.kotlin.detekt")
+                apply("cuju.lokalise")
             }
             val extension = extensions.getByType<ApplicationExtension>()
             configureAndroidCompose(extension)
 
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
+                configureKoin(this)
                 compileSdk = libs.findVersion("compileSdkVersion").get().toString().toInt()
                 defaultConfig {
                     applicationId = "com.cuju.video"

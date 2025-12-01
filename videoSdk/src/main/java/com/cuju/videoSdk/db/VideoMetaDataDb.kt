@@ -12,5 +12,5 @@ import com.cuju.videoSdk.db.entities.VideoMetaData
     version = 1,
 )
 abstract class VideoMetaDataDb : RoomDatabase() {
-    abstract fun getVenueConfigurationDao(): VideoMetaDataDao
+    abstract fun videoMetaDataDao(): VideoMetaDataDao
 }

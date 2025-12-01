@@ -5,11 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class VideoMetaData(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @PrimaryKey(autoGenerate = false)
     val videoUri: String,
     val thumbNailUri: String,
-    val title: String,
     val timeStamp: String,
+    val fileName: String,
     val lifeCycleState: String
 )

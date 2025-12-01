@@ -33,6 +33,8 @@ fastscrollerCore = "0.3.2"
 roomVersion = "2.8.4"
 junit5Version = "6.0.1"
 workVersion = "2.11.0"
+mappie = "2.2.21-2.0.0"
+coil = "3.3.0"
 
 # plugins
 detektPluginVersion = "1.23.8"
@@ -117,6 +119,7 @@ accompanist-permissions = { group = "com.google.accompanist", name = "accompanis
 
 # koin
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-workmanager = { module = "io.insert-koin:koin-androidx-workmanager", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
@@ -141,6 +144,10 @@ androidx-room-testing = { group = "androidx.room", name = "room-testing", versio
 androidx-work-manager = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workVersion" }
 androidx-work-manager-testing = { group = "androidx.work", name = "work-testing", version.ref = "workVersion" }
 
+# coil
+coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+# mappie
+mappie-api = { module = "tech.mappie:mappie-api", version.ref = "mappie" }
 
 # junit
 junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5Version" }
@@ -167,9 +174,10 @@ cuju-android-library = { id = "cuju.android.library", version = "unspecified" }
 cuju-android-camera-library = { id = "cuju.android.camera.library", version = "unspecified" }
 cuju-android-video-player-library = { id = "cuju.android.video.player", version = "unspecified" }
 cuju-android-room-library = { id = "cuju.android.room", version = "unspecified" }
+cuju-alokalise = { id = "cuju.lokalise", version = "unspecified" }
 cuju-android-lint = { id = "cuju.android.lint", version = "unspecified" }
 cuju-kotlin-detekt = { id = "cuju.kotlin.detekt", version = "unspecified" }
-
+mappie = { id = "tech.mappie.plugin", version.ref = "mappie" }
 
 [bundles]
 room-api = [

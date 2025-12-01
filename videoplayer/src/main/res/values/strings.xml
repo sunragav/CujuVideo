@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="video_player_home_screen_playing_title">Playing %1$s</string>
+    <string name="video_player_screen_upload_action">Upload</string>
+</resources>

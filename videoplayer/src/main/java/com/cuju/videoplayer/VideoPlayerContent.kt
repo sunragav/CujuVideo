@@ -21,7 +21,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 
 @Composable
-fun VideoPlayer(
+fun VideoPlayerContent(
     uri: String,
     modifier: Modifier = Modifier,
 ) {

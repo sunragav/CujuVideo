@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="camera_permission_rationale">Taking photos and videos requires access to the camera and microphone.</string>
+    <string name="camera_permission_settings">Please go to your device\'s Settings and grant these permissions.</string>
+    <string name="back">Back</string>
+    <string name="grant_permission">Grant permission</string>
+    <string name="camera_home_record_video_title">Record Video</string>
+</resources>

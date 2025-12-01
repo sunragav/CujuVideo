@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CujuVideo</string>
+    <string name="home_screen_start_camera_action">Start Camera</string>
+    <string name="home_screen_gallery_action">Gallery</string>
 </resources>

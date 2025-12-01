@@ -16,13 +16,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.cuju.ui.components.CjDropDownMenu
 import com.cuju.ui.components.CjLargeButton
-import com.cuju.videoplayer.VideoPlayer
+import com.cuju.videoplayer.VideoPlayerContent
 import java.io.File
 
 @Composable
 fun VideoPlayerSample(innerPadding: PaddingValues, appFolder: String) {
     Column(
-        Modifier.Companion
+        Modifier
             .fillMaxSize()
             .padding(innerPadding)
     ) {
@@ -33,9 +33,9 @@ fun VideoPlayerSample(innerPadding: PaddingValues, appFolder: String) {
                 .filter { it.endsWith(".mp4") }
         }
 
-        Box(Modifier.Companion.fillMaxWidth()) {
+        Box(Modifier.fillMaxWidth()) {
             CjDropDownMenu(
-                modifier = Modifier.Companion.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 expanded = expanded,
                 items = items,
                 selectedIndex = selectedIndex,
@@ -54,7 +54,7 @@ fun VideoPlayerSample(innerPadding: PaddingValues, appFolder: String) {
                 })
         }
         selectedIndex?.let {
-            VideoPlayer(
+            VideoPlayerContent(
                 uri = items[it]
             )
         }

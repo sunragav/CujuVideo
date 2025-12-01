@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_uploading_file_title">Uploading File</string>
+    <string name="notification_uploading_file_message">Uploading File</string>
+    <string name="notification_file_not_found_error">File not found! try again.</string>
+    <string name="notification_upload_file_failed_retry">Upload File Failed! will try again in 10 seconds</string>
+    <string name="notification_error">Error: %1$s</string>
+    <string name="notification_upload_failed_unknown_error">Upload Failed! Unknown Error</string>
+    <string name="notification_uploading_file_in_progress">Uploading File in progress: %1$d</string>
+    <string name="notification_uploaded_successfully">Uploaded Successfully</string>
+</resources>

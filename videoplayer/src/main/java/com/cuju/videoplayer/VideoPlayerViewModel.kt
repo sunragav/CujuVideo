@@ -1,0 +1,26 @@
+package com.cuju.videoplayer
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.cuju.videoSdk.domain.models.VideoLifeCycle
+import com.cuju.videoSdk.usecases.GetVideoLifeCycleState
+import com.cuju.videoSdk.usecases.UploadFile
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.SharingStarted.Companion.Lazily
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+
+class VideoPlayerViewModel(
+    private val uri: String,
+    private val uploadFile: UploadFile,
+    getVideoLifeCycleState: GetVideoLifeCycleState
+) : ViewModel() {
+    val lifeCycleState: StateFlow<VideoLifeCycle> =
+        getVideoLifeCycleState(uri).stateIn(viewModelScope, Lazily, VideoLifeCycle.RECORDED)
+
+
+    fun upload() = viewModelScope.launch(Dispatchers.Default) {
+        uploadFile(uri)
+    }
+}

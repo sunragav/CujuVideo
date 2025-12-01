@@ -37,6 +37,8 @@ internal fun Project.configureAndroidCompose(
             add("implementation", libs.findLibrary("fastscroller-core").get())
             add("implementation", libs.findLibrary("fastscroller-indicator").get())
             add("implementation", libs.findLibrary("fastscroller-material").get())
+            add("implementation", libs.findLibrary("coil").get())
+
             add(
                 "androidTestImplementation",
                 libs.findLibrary("androidx-compose-ui-test-junit4").get()
