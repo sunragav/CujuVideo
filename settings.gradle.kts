@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -21,3 +22,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "CujuVideo"
 include(":app")
+include(":camera")
+include(":ui")
+include(":videoplayer")
+include(":core")
+include(":explorer")
+include(":room")
+include(":videoSdk")

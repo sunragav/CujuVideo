@@ -1,13 +1,48 @@
 [versions]
+versionMajor = "7"
+versionMinor = "20"
+versionPatch = "0"
+compileSdkVersion = "36"
+minSdkVersion = "24"
+targetSdkVersion = "36"
+
 agp = "8.13.1"
-kotlin = "2.0.21"
+kotlin = "2.2.21"
 coreKtx = "1.17.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-lifecycleRuntimeKtx = "2.9.4"
-activityCompose = "1.11.0"
-composeBom = "2024.09.00"
+lifecycleRuntimeKtx = "2.10.0"
+activityCompose = "1.12.0"
+composeBom = "2025.11.01"
+serializationVersion = "1.9.0"
+pagingCompose = "3.3.6"
+composeVersion = "1.9.5"
+androidxLifecycleVersion = "2.10.0"
+navVersion = "2.9.6"
+detektVersion = "1.23.8"
+cameraX = "1.5.1"
+adaptiveAndroid = "1.2.0"
+coroutinesVersion = "1.9.0"
+accompanist = "0.32.0"
+media3 = "1.5.0"
+media3-ui-compose = "1.8.0"
+koin = "4.1.1"
+startupRuntime = "1.2.0"
+fastscrollerCore = "0.3.2"
+roomVersion = "2.8.4"
+junit5Version = "6.0.1"
+workVersion = "2.11.0"
+mappie = "2.2.21-2.0.0"
+coil = "3.3.0"
+
+# plugins
+detektPluginVersion = "1.23.8"
+kspVersion = "2.3.3"
+androidDesugarJdkLibs = "2.1.5"
+appcompat = "1.7.1"
+material = "1.13.0"
+runtime = "1.9.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,8 +59,135 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
+
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navVersion" }
+androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingCompose" }
+
+androidx-compose-ui-viewbinding = { group = "androidx.compose.ui", name = "ui-viewbinding", version.ref = "composeVersion" }
+androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "composeVersion" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycleVersion" }
+
+# kotlin libs
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serializationVersion" }
+
+ksp-symbol-processing = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "kspVersion" }
+
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detektVersion" }
+
+# coroutines
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesVersion" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
+
+# reflection
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+
+
+# camera
+androidx-camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "cameraX" }
+androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraX" }
+androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraX" }
+androidx-camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "cameraX" }
+androidx-camera-video = { group = "androidx.camera", name = "camera-video", version.ref = "cameraX" }
+androidx-camera-extensions = { group = "androidx.camera", name = "camera-extensions", version.ref = "cameraX" }
+
+androidx-adaptive-android = { group = "androidx.compose.material3.adaptive", name = "adaptive-layout", version.ref = "adaptiveAndroid" }
+
+# player
+media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3" }
+media3-effect = { group = "androidx.media3", name = "media3-effect", version.ref = "media3" }
+media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3" }
+media3-transformer = { group = "androidx.media3", name = "media3-transformer", version.ref = "media3" }
+media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3" }
+media3-ui-compose = { group = "androidx.media3", name = "media3-ui-compose", version.ref = "media3-ui-compose" }
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+detekt-gradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektVersion" }
+compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "kspVersion" }
+room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "roomVersion" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
+
+# permissions
+accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
+
+# koin
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-workmanager = { module = "io.insert-koin:koin-androidx-workmanager", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
+
+# android context initializer
+androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
+
+# scroll
+fastscroller-core = { module = "io.github.oikvpqya.compose.fastscroller:fastscroller-core", version.ref = "fastscrollerCore" }
+fastscroller-indicator = { module = "io.github.oikvpqya.compose.fastscroller:fastscroller-indicator", version.ref = "fastscrollerCore" }
+fastscroller-material = { module = "io.github.oikvpqya.compose.fastscroller:fastscroller-material", version.ref = "fastscrollerCore" }
+
+# room
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
+room-paging = { group = "androidx.room", name = "room-paging", version.ref = "roomVersion" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "roomVersion" }
+
+# work manager
+androidx-work-manager = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workVersion" }
+androidx-work-manager-testing = { group = "androidx.work", name = "work-testing", version.ref = "workVersion" }
+
+# coil
+coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+# mappie
+mappie-api = { module = "tech.mappie:mappie-api", version.ref = "mappie" }
+
+# junit
+junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5Version" }
+junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5Version" }
+junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit5Version" }
+junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junit5Version" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektPluginVersion" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+room = { id = "androidx.room", version.ref = "roomVersion" }
+
+# Local convention plugins registered in this project
+cuju-android-application-compose = { id = "cuju.android.application.compose", version = "unspecified" }
+cuju-android-library = { id = "cuju.android.library", version = "unspecified" }
+cuju-android-camera-library = { id = "cuju.android.camera.library", version = "unspecified" }
+cuju-android-video-player-library = { id = "cuju.android.video.player", version = "unspecified" }
+cuju-android-room-library = { id = "cuju.android.room", version = "unspecified" }
+cuju-alokalise = { id = "cuju.lokalise", version = "unspecified" }
+cuju-android-lint = { id = "cuju.android.lint", version = "unspecified" }
+cuju-kotlin-detekt = { id = "cuju.kotlin.detekt", version = "unspecified" }
+mappie = { id = "tech.mappie.plugin", version.ref = "mappie" }
+
+[bundles]
+room-api = [
+    "room-runtime",
+    "room-ktx",
+    "room-paging"
+]
+
+jupiter-test-implementation = [
+    "junit-jupiter-api",
+    "junit-jupiter-engine",
+    "junit-jupiter-params",
+]
