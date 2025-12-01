@@ -15,6 +15,11 @@ development practices and libraries.
 - **Pagination**: Paging 3 for loading the stored meta data from the DB gracefully.
 - **Modular Architecture**: Separates concerns into distinct modules like `:app`, `:camera`,
   `explorer`, `videoplayer` and `:videoSdk`.
+  
+
+https://github.com/user-attachments/assets/29a98146-4fa6-4963-8970-ff049d8382a6
+
+
 
 ## 🛠️ Tech Stack & Libraries
 
@@ -62,6 +67,7 @@ modules(projects).
 ### Detekt and Lint check
 
 There is a Detekt convention plugin which adds the detekt gradle tasks at the verification stage.
+<img width="344" height="599" alt="Screenshot 2025-12-01 at 04 07 53" src="https://github.com/user-attachments/assets/d6f9cfea-319c-4df1-9461-6aaa545bdbee" />
 
 Detekt is a powerful static analysis tool for kotlin.
 
@@ -69,6 +75,8 @@ Detekt is a powerful static analysis tool for kotlin.
 
 The camera module records videos and thumbnails in the application local directory `files` where no
 special permission is needed
+<img width="801" height="632" alt="Screenshot 2025-12-01 at 04 25 04" src="https://github.com/user-attachments/assets/e9815bad-108c-4e49-8b02-38443da3504d" />
+
 The videoSdk module has some useful use cases that contains the domain logic used by the other
 feature modules.
 GetVideoMetaDataListFromTheAppDirectory is a use case that monitors the application local directory
