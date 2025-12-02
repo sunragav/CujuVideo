@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -64,6 +65,9 @@ fun CujuGalleryScreen(onItemClick: (VideoMetaData) -> Unit = {}) {
                 val item = items[index]
                 item?.let {
                     CjElevatedButton(onClick = { onItemClick(item) }) {
+                        LaunchedEffect(Unit) {
+                            viewModel.updateUploadStatus(it.videoUri)
+                        }
                         Image(
                             painter = rememberAsyncImagePainter(File(it.thumbNailUri)),
                             contentDescription = null
