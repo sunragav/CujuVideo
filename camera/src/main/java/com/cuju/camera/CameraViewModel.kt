@@ -15,11 +15,9 @@ import androidx.camera.view.video.AudioConfig
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cuju.videoSdk.db.entities.VideoMetaData
-import com.cuju.videoSdk.models.VideoLifeCycle
-import com.cuju.videoSdk.repostories.VideoMetaDataRepository
 import com.cuju.videoSdk.usecases.GetThumbNailFileName
 import com.cuju.videoSdk.usecases.GetVideoFileName
+import com.cuju.videoSdk.usecases.InsertVideoMetaData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -32,7 +30,7 @@ class CameraViewModel(
     private val thumbnailSize: Size,
     private val getVideoFileName: GetVideoFileName,
     private val getThumbNailFileName: GetThumbNailFileName,
-    private val viewRepository: VideoMetaDataRepository
+    private val insertVideoMetaData: InsertVideoMetaData,
 ) : ViewModel() {
     val captureState = MutableStateFlow(VideoCaptureState())
     private var recording: Recording? = null
@@ -101,14 +99,11 @@ class CameraViewModel(
                 val fileOutputStream = FileOutputStream(destinationFile)
                 thumbnailBitmap.compress(Bitmap.CompressFormat.PNG, 75, fileOutputStream)
                 fileOutputStream.close()
-                viewRepository.upsertVideoMetaData(
-                    VideoMetaData(
-                        videoUri = videoOutputFile.absolutePath.toString(),
-                        thumbNailUri = destinationFile.absolutePath.toString(),
-                        timeStamp = timeStamp,
-                        fileName = videoOutputFile.name,
-                        lifeCycleState = VideoLifeCycle.RECORDED.name
-                    )
+                insertVideoMetaData(
+                    videoOutputFile = videoOutputFile.absolutePath.toString(),
+                    thumbnailFile = destinationFile.absolutePath.toString(),
+                    timeStamp = timeStamp,
+                    fileName = videoOutputFile.name
                 )
                 captureState.update {
                     it.copy(error = null, captureMode = CaptureMode.VIDEO_READY)

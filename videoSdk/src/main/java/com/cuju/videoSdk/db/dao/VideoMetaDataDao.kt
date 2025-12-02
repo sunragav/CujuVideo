@@ -12,7 +12,6 @@ abstract class VideoMetaDataDao : BaseDao<VideoMetaData>() {
     @Query("SELECT lifeCycleState FROM VideoMetaData WHERE videoUri = :uri")
     abstract fun getLifeCycleState(uri: String): Flow<String>
 
-
     @Query("UPDATE VideoMetaData SET lifeCycleState=:lifeCycleState WHERE videoUri = :videoUri")
     abstract fun updateLifeCycleData(videoUri: String, lifeCycleState: String)
 

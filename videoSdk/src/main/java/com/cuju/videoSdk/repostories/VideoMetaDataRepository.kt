@@ -16,6 +16,5 @@ interface VideoMetaDataRepository {
     suspend fun getVideoMetaDataByUri(videoUri: String): VideoMetaData?
     fun getLifeCycleState(uri: String): Flow<VideoLifeCycle>
     fun getWorkerId(uri: String): Flow<String?>
-
     fun getAllPaged(): PagingSource<Int, VideoMetaData>
 }

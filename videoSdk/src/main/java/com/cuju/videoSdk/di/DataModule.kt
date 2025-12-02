@@ -12,6 +12,7 @@ import com.cuju.videoSdk.usecases.GetVideoFileName
 import com.cuju.videoSdk.usecases.GetVideoLifeCycleState
 import com.cuju.videoSdk.usecases.GetVideoMetaDataListFromTheAppDirectory
 import com.cuju.videoSdk.usecases.GetWorkerId
+import com.cuju.videoSdk.usecases.InsertVideoMetaData
 import com.cuju.videoSdk.usecases.PopulateDb
 import com.cuju.videoSdk.usecases.PopulateVideoMetaDataDb
 import com.cuju.videoSdk.usecases.UpdateUploadStatus
@@ -40,6 +41,7 @@ fun videoMetaDataModule() = coreModule() +
             factoryOf(::GetVideoFileName)
             factoryOf(::GetVideoLifeCycleState)
             factoryOf(::GetWorkerId)
+            factoryOf(::InsertVideoMetaData)
             factory { GetVideoMetaDataListFromTheAppDirectory(applicationContext) }
             factoryOf(::PopulateVideoMetaDataDb)
             factoryOf(::UploadFile)
