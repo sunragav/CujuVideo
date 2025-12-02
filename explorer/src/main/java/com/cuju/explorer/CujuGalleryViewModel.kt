@@ -9,7 +9,6 @@ import com.cuju.videoSdk.usecases.GetAllVideoMetaDataPaged
 import com.cuju.videoSdk.usecases.GetWorkerId
 import com.cuju.videoSdk.usecases.UpdateUploadStatus
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 class CujuGalleryViewModel(
     private val getWorkerId: GetWorkerId,
@@ -19,9 +18,8 @@ class CujuGalleryViewModel(
     val videoMetaDataList: Flow<PagingData<VideoMetaData>> =
         getAllVideoMetaDataPaged().cachedIn(viewModelScope)
 
-    fun updateUploadStatus(uri: String) = viewModelScope.launch {
+    suspend fun updateUploadStatus(uri: String) =
         getWorkerId(uri).collect { uuid ->
             uuid?.let { updateUploadStatus(it, uri) }
         }
-    }
 }
