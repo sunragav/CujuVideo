@@ -32,6 +32,7 @@ import com.cuju.video.R
 import com.cuju.videoSdk.component.VideoLifeCycleContent
 import com.cuju.videoSdk.domain.models.VideoMetaData
 import io.github.oikvpqya.compose.fastscroller.rememberScrollbarAdapter
+import kotlinx.coroutines.coroutineScope
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.KoinIsolatedContext
 import org.koin.core.KoinApplication
@@ -64,24 +65,7 @@ fun CujuGalleryScreen(onItemClick: (VideoMetaData) -> Unit = {}) {
             ) { index: Int ->
                 val item = items[index]
                 item?.let {
-                    CjElevatedButton(onClick = { onItemClick(item) }) {
-                        LaunchedEffect(Unit) {
-                            viewModel.updateUploadStatus(it.videoUri)
-                        }
-                        Image(
-                            painter = rememberAsyncImagePainter(File(it.thumbNailUri)),
-                            contentDescription = null
-                        )
-                        CjLabelSmall(
-                            modifier = Modifier.padding(bottom = SmallMargin),
-                            text = it.fileName
-                        )
-                        CjLabelSmall(
-                            modifier = Modifier.padding(bottom = SmallMargin),
-                            text = it.timeStamp
-                        )
-                        VideoLifeCycleContent(state = it.lifeCycleState)
-                    }
+                    GalleryItem(it, onItemClick, viewModel::updateUploadStatus)
                 }
 
             }
@@ -92,6 +76,34 @@ fun CujuGalleryScreen(onItemClick: (VideoMetaData) -> Unit = {}) {
                 .fillMaxHeight(),
             adapter = rememberScrollbarAdapter(scrollState = state),
         )
+    }
+}
+
+@Composable
+private fun GalleryItem(
+    item: VideoMetaData,
+    onItemClick: (VideoMetaData) -> Unit,
+    updateUploadStatus: suspend (String) -> Unit
+) {
+    CjElevatedButton(onClick = { onItemClick(item) }) {
+        LaunchedEffect(Unit) {
+            coroutineScope {
+                updateUploadStatus(item.videoUri)
+            }
+        }
+        Image(
+            painter = rememberAsyncImagePainter(File(item.thumbNailUri)),
+            contentDescription = null
+        )
+        CjLabelSmall(
+            modifier = Modifier.padding(bottom = SmallMargin),
+            text = item.fileName
+        )
+        CjLabelSmall(
+            modifier = Modifier.padding(bottom = SmallMargin),
+            text = item.timeStamp
+        )
+        VideoLifeCycleContent(state = item.lifeCycleState)
     }
 }
 
