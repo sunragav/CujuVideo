@@ -6,5 +6,6 @@ cujuLokalise {
 }
 dependencies {
     api(project(":ui"))
+    implementation(project(":core"))
     api(project(":videoSdk"))
 }

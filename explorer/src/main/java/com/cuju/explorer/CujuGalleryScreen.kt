@@ -36,7 +36,7 @@ import org.koin.compose.KoinIsolatedContext
 import org.koin.core.KoinApplication
 import java.io.File
 
-@RequiresApi(Build.VERSION_CODES.O)
+@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
 @Composable
 fun CujuGalleryScreen(onItemClick: (VideoMetaData) -> Unit = {}) {
     val viewModel = koinViewModel<CujuGalleryViewModel>()
@@ -91,6 +91,7 @@ fun CujuGalleryScreen(onItemClick: (VideoMetaData) -> Unit = {}) {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CujuGalleryHomeScreen(

@@ -11,8 +11,10 @@ import com.cuju.videoSdk.usecases.GetThumbNailFileName
 import com.cuju.videoSdk.usecases.GetVideoFileName
 import com.cuju.videoSdk.usecases.GetVideoLifeCycleState
 import com.cuju.videoSdk.usecases.GetVideoMetaDataListFromTheAppDirectory
+import com.cuju.videoSdk.usecases.GetWorkerId
 import com.cuju.videoSdk.usecases.PopulateDb
 import com.cuju.videoSdk.usecases.PopulateVideoMetaDataDb
+import com.cuju.videoSdk.usecases.UpdateUploadStatus
 import com.cuju.videoSdk.usecases.UploadFile
 import com.cuju.videoSdk.workmanager.PopulateVideoMetaDataWorker
 import com.cuju.videoSdk.workmanager.UploadWorker
@@ -33,9 +35,11 @@ fun videoMetaDataModule() = coreModule() +
             single<VideoMetaDataRepository> { LocalVideoMetaDataRepository(get(), get()) }
             workerOf(::PopulateVideoMetaDataWorker)
             workerOf(::UploadWorker)
+            factoryOf(::UpdateUploadStatus)
             factoryOf(::GetThumbNailFileName)
             factoryOf(::GetVideoFileName)
             factoryOf(::GetVideoLifeCycleState)
+            factoryOf(::GetWorkerId)
             factory { GetVideoMetaDataListFromTheAppDirectory(applicationContext) }
             factoryOf(::PopulateVideoMetaDataDb)
             factoryOf(::UploadFile)

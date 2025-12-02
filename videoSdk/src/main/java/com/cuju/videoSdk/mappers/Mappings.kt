@@ -2,6 +2,9 @@ package com.cuju.videoSdk.mappers
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.cuju.core.getFormattedTimeStamp
+import com.cuju.core.parseTimeStamp
+import com.cuju.videoSdk.domain.models.CUJU_DATE_FORMAT
 import com.cuju.videoSdk.domain.models.VideoLifeCycle
 import com.cuju.videoSdk.domain.models.VideoMetaData
 import tech.mappie.api.ObjectMappie
@@ -12,12 +15,14 @@ object VideoMetaDataEntityToDomainMapper :
     ObjectMappie<com.cuju.videoSdk.db.entities.VideoMetaData, VideoMetaData>() {
     override fun map(from: com.cuju.videoSdk.db.entities.VideoMetaData): VideoMetaData = mapping {
         to::lifeCycleState fromValue VideoLifeCycle.valueOf(from.lifeCycleState)
+        to::timeStamp fromValue getFormattedTimeStamp(from.timeStamp, CUJU_DATE_FORMAT)
     }
 }
 
 object VideoMetaDataDomainToEntityMapper :
     ObjectMappie<VideoMetaData, com.cuju.videoSdk.db.entities.VideoMetaData>() {
     override fun map(from: VideoMetaData): com.cuju.videoSdk.db.entities.VideoMetaData = mapping {
+        to::timeStamp fromValue parseTimeStamp(from.timeStamp, CUJU_DATE_FORMAT)
         to::lifeCycleState fromValue from.lifeCycleState.name
     }
 }

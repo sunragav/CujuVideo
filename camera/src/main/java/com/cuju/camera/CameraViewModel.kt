@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.media.ThumbnailUtils
+import android.os.Build
 import android.util.Size
+import androidx.annotation.RequiresApi
 import androidx.camera.video.FileOutputOptions
 import androidx.camera.video.Recording
 import androidx.camera.video.VideoRecordEvent
@@ -13,6 +15,9 @@ import androidx.camera.view.video.AudioConfig
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cuju.videoSdk.db.entities.VideoMetaData
+import com.cuju.videoSdk.models.VideoLifeCycle
+import com.cuju.videoSdk.repostories.VideoMetaDataRepository
 import com.cuju.videoSdk.usecases.GetThumbNailFileName
 import com.cuju.videoSdk.usecases.GetVideoFileName
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,7 +31,8 @@ class CameraViewModel(
     private val filesDir: File,
     private val thumbnailSize: Size,
     private val getVideoFileName: GetVideoFileName,
-    private val getThumbNailFileName: GetThumbNailFileName
+    private val getThumbNailFileName: GetThumbNailFileName,
+    private val viewRepository: VideoMetaDataRepository
 ) : ViewModel() {
     val captureState = MutableStateFlow(VideoCaptureState())
     private var recording: Recording? = null
@@ -38,6 +44,7 @@ class CameraViewModel(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     @SuppressLint("MissingPermission")
     fun startRecording(controller: LifecycleCameraController, context: Context) {
         captureState.update {
@@ -72,6 +79,7 @@ class CameraViewModel(
                         }
                     } else {
                         saveThumbnail(
+                            timeMillis,
                             videoOutputFile,
                             File(context.filesDir, getThumbNailFileName(timeMillis))
                         )
@@ -81,7 +89,8 @@ class CameraViewModel(
         }
     }
 
-    private fun saveThumbnail(videoOutputFile: File, destinationFile: File) =
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun saveThumbnail(timeStamp: Long, videoOutputFile: File, destinationFile: File) =
         viewModelScope.launch {
             try {
                 val thumbnailBitmap = ThumbnailUtils.createVideoThumbnail(
@@ -92,6 +101,15 @@ class CameraViewModel(
                 val fileOutputStream = FileOutputStream(destinationFile)
                 thumbnailBitmap.compress(Bitmap.CompressFormat.PNG, 75, fileOutputStream)
                 fileOutputStream.close()
+                viewRepository.upsertVideoMetaData(
+                    VideoMetaData(
+                        videoUri = videoOutputFile.absolutePath.toString(),
+                        thumbNailUri = destinationFile.absolutePath.toString(),
+                        timeStamp = timeStamp,
+                        fileName = videoOutputFile.name,
+                        lifeCycleState = VideoLifeCycle.RECORDED.name
+                    )
+                )
                 captureState.update {
                     it.copy(error = null, captureMode = CaptureMode.VIDEO_READY)
                 }
