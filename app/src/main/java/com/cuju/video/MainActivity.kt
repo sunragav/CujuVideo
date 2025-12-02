@@ -70,7 +70,6 @@ class MainActivity : ComponentActivity() {
                             composable<Gallery> {
                                 val cujuGalleryModule = CujuGalleryModule()
                                 cujuGalleryModule.CujuGalleryHomeScreen(onItemClick = {
-                                    navController.popBackStack()
                                     navController.navigate(Player(it.videoUri))
                                 }) {
                                     navController.popBackStack()
@@ -83,7 +82,6 @@ class MainActivity : ComponentActivity() {
                                     uri = playerRoute.videoUri
                                 ) {
                                     navController.popBackStack()
-                                    navController.navigate(Gallery)
                                 }
                             }
                         }
