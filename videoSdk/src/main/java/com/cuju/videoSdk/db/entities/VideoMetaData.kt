@@ -8,7 +8,8 @@ data class VideoMetaData(
     @PrimaryKey(autoGenerate = false)
     val videoUri: String,
     val thumbNailUri: String,
-    val timeStamp: String,
+    val timeStamp: Long,
     val fileName: String,
-    val lifeCycleState: String
+    val lifeCycleState: String,
+    val workerId: String? = null
 )
