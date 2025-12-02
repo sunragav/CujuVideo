@@ -3,10 +3,8 @@ package com.cuju.videoSdk.usecases
 import androidx.work.Constraints
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.cuju.core.applicationContext
-import com.cuju.videoSdk.models.VideoLifeCycle
 import com.cuju.videoSdk.repostories.VideoMetaDataRepository
 import com.cuju.videoSdk.workmanager.UploadWorker
 import kotlinx.coroutines.Dispatchers
@@ -15,8 +13,10 @@ import java.util.UUID
 
 class UploadFile(private val videoMetaDataRepository: VideoMetaDataRepository) {
     suspend operator fun invoke(uri: String) {
-        val metadata = videoMetaDataRepository.getVideoMetaDataByUri(uri)
         val uuid = UUID.randomUUID()
+        withContext(Dispatchers.Default) {
+            videoMetaDataRepository.updateWorkerId(uri, uuid.toString())
+        }
         val powerConstraints = Constraints.Builder()
             .setRequiresBatteryNotLow(true)
             .build()
@@ -29,42 +29,5 @@ class UploadFile(private val videoMetaDataRepository: VideoMetaDataRepository) {
                 .setId(uuid)
                 .build()
         )
-
-        WorkManager.getInstance(applicationContext)
-            .getWorkInfoByIdFlow(uuid)
-            .collect { workInfo: WorkInfo? ->
-                if (workInfo != null) {
-                    when (workInfo.state) {
-                        WorkInfo.State.SUCCEEDED -> updateLifeCycleState(
-                            metadata = metadata,
-                            VideoLifeCycle.UPLOADED
-                        )
-
-                        WorkInfo.State.ENQUEUED,
-                        WorkInfo.State.RUNNING -> updateLifeCycleState(
-                            metadata = metadata,
-                            VideoLifeCycle.UPLOADING
-                        )
-
-                        WorkInfo.State.BLOCKED,
-                        WorkInfo.State.CANCELLED,
-                        WorkInfo.State.FAILED -> updateLifeCycleState(
-                            metadata = metadata,
-                            VideoLifeCycle.RECORDED
-                        )
-                    }
-                }
-            }
-    }
-
-    private suspend fun updateLifeCycleState(
-        metadata: com.cuju.videoSdk.db.entities.VideoMetaData?,
-        lifeCycleState: VideoLifeCycle
-    ) {
-        withContext(Dispatchers.Default) {
-            metadata?.let { md ->
-                videoMetaDataRepository.upsertVideoMetaData(md.copy(lifeCycleState = lifeCycleState.name))
-            }
-        }
     }
 }

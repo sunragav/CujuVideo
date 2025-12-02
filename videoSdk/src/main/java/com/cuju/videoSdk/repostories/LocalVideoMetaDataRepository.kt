@@ -20,6 +20,18 @@ class LocalVideoMetaDataRepository(
         }
     }
 
+    override suspend fun updateLifeCycleData(videoUri: String, videoLifeCycle: VideoLifeCycle) {
+        videoMetaDataDb.withTransaction {
+            videoMetaDataDao.updateLifeCycleData(videoUri, videoLifeCycle.name)
+        }
+    }
+
+    override suspend fun updateWorkerId(videoUri: String, workedId: String) {
+        videoMetaDataDb.withTransaction {
+            videoMetaDataDao.updateWorkerId(videoUri, workedId)
+        }
+    }
+
     override suspend fun insertVideoMetaDataOrIgnore(videoMetaDataList: List<VideoMetaData>) {
         videoMetaDataDao.insertOrIgnore(videoMetaDataList)
     }
@@ -42,8 +54,9 @@ class LocalVideoMetaDataRepository(
     override fun getLifeCycleState(uri: String): Flow<VideoLifeCycle> =
         videoMetaDataDao.getLifeCycleState(uri).map { VideoLifeCycle.valueOf(it) }
 
+    override fun getWorkerId(uri: String): Flow<String?> =
+        videoMetaDataDao.getWorkerId(uri)
+
     override fun getAllPaged(): PagingSource<Int, VideoMetaData> =
         videoMetaDataDao.pagingSource()
-
-
 }

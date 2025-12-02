@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a38fd43790e8ab93b9bb2915cb6e982d",
+    "identityHash": "2c61d52284934d843caba974e96e8137",
     "entities": [
       {
         "tableName": "VideoMetaData",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`videoUri` TEXT NOT NULL, `thumbNailUri` TEXT NOT NULL, `timeStamp` TEXT NOT NULL, `fileName` TEXT NOT NULL, `lifeCycleState` TEXT NOT NULL, PRIMARY KEY(`videoUri`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`videoUri` TEXT NOT NULL, `thumbNailUri` TEXT NOT NULL, `timeStamp` INTEGER NOT NULL, `fileName` TEXT NOT NULL, `lifeCycleState` TEXT NOT NULL, `workerId` TEXT, PRIMARY KEY(`videoUri`))",
         "fields": [
           {
             "fieldPath": "videoUri",
@@ -23,7 +23,7 @@
           {
             "fieldPath": "timeStamp",
             "columnName": "timeStamp",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -37,6 +37,11 @@
             "columnName": "lifeCycleState",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "workerId",
+            "columnName": "workerId",
+            "affinity": "TEXT"
           }
         ],
         "primaryKey": {
@@ -49,7 +54,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a38fd43790e8ab93b9bb2915cb6e982d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2c61d52284934d843caba974e96e8137')"
     ]
   }
 }
