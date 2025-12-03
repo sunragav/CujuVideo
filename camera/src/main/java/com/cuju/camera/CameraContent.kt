@@ -1,6 +1,8 @@
 package com.cuju.camera
 
+import android.os.Build
 import android.util.Size
+import androidx.annotation.RequiresApi
 import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
 import androidx.compose.foundation.layout.Arrangement
@@ -21,6 +23,7 @@ import com.cuju.ui.ThumbnailWidth
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
+@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun CameraContent(modifier: Modifier = Modifier) {
     val context = LocalContext.current

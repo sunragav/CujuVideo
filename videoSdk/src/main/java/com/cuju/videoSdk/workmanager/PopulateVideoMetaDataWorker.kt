@@ -1,6 +1,8 @@
 package com.cuju.videoSdk.workmanager
 
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.cuju.videoSdk.usecases.PopulateVideoMetaDataDb
@@ -13,6 +15,7 @@ class PopulateVideoMetaDataWorker(
     workerParams: WorkerParameters,
     private val populateVideoMetaDataDb: PopulateVideoMetaDataDb,
 ) : CoroutineWorker(context, workerParams), KoinComponent {
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override suspend fun doWork(): Result {
         return try {
             withContext(Dispatchers.Default) {
@@ -26,7 +29,6 @@ class PopulateVideoMetaDataWorker(
     }
 
     companion object Companion {
-        const val POPULATE_VIDEO_META_DATA_SUCCESS = "POPULATE_VIDEO_META_DATA_SUCCESS"
         const val POPULATE_VIDEO_META_DATA_INPUT_DATA = "POPULATE_VIDEO_META_DATA_INPUT_DATA"
     }
 }
