@@ -5,9 +5,10 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -22,6 +23,8 @@ class UploadWorker(
 ) : CoroutineWorker(context, workerParams), KoinComponent {
 
     val uri = requireNotNull(inputData.getString(FILE_URI_TO_UPLOAD))// 1
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun doWork(): Result = runCatching {
         uploadVideo(uri) // 2
         Result.success() // 3
@@ -54,6 +57,7 @@ class UploadWorker(
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun uploadVideo(uri: String?) {
         // Check if the file URI is provided
         if (uri == null)
@@ -70,7 +74,7 @@ class UploadWorker(
                 context.getString(
                     R.string.notification_uploading_file_in_progress,
                     i
-                ) + "%"
+                )
             )
         }
 
@@ -87,6 +91,7 @@ class UploadWorker(
         const val UPLOAD_NOTIFICATION_CHANNEL_NAME = "Cuju Video Upload"
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun sendNotification(message: String) {
 
         if (ActivityCompat.checkSelfPermission(
@@ -104,7 +109,7 @@ class UploadWorker(
             NotificationChannel(
                 UPLOAD_NOTIFICATION_CHANNEL_ID,
                 UPLOAD_NOTIFICATION_CHANNEL_NAME,
-                NotificationManagerCompat.IMPORTANCE_DEFAULT
+                NotificationManager.IMPORTANCE_DEFAULT
             )
         )
         manager.notify(

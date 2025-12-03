@@ -19,7 +19,7 @@ class CujuGalleryModule {
         )
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @Composable
     fun CujuGalleryHomeScreen(onItemClick: (VideoMetaData) -> Unit, onBackClick: () -> Unit) =
         CujuGalleryHomeScreen(

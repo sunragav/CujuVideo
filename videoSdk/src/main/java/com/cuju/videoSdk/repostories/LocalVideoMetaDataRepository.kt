@@ -4,8 +4,10 @@ import androidx.paging.PagingSource
 import androidx.room.withTransaction
 import com.cuju.videoSdk.db.VideoMetaDataDb
 import com.cuju.videoSdk.db.dao.VideoMetaDataDao
-import com.cuju.videoSdk.db.entities.VideoMetaData
 import com.cuju.videoSdk.domain.models.VideoLifeCycle
+import com.cuju.videoSdk.domain.models.VideoMetaData
+import com.cuju.videoSdk.mappers.VideoMetaDataDomainToEntityMapper
+import com.cuju.videoSdk.mappers.VideoMetaDataEntityToDomainMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -16,7 +18,7 @@ class LocalVideoMetaDataRepository(
     VideoMetaDataRepository {
     override suspend fun upsertVideoMetaData(videoMetaData: VideoMetaData) {
         videoMetaDataDb.withTransaction {
-            videoMetaDataDao.upsert(videoMetaData)
+            videoMetaDataDao.upsert(VideoMetaDataDomainToEntityMapper.map(videoMetaData))
         }
     }
 
@@ -33,12 +35,15 @@ class LocalVideoMetaDataRepository(
     }
 
     override suspend fun insertVideoMetaDataOrIgnore(videoMetaDataList: List<VideoMetaData>) {
-        videoMetaDataDao.insertOrIgnore(videoMetaDataList)
+        videoMetaDataDao.insertOrIgnore(videoMetaDataList.map(VideoMetaDataDomainToEntityMapper::map))
     }
 
     override suspend fun deleteVideoMetaData(videoUri: String) {
         val videoMetaData = getVideoMetaDataByUri(videoUri)
-        videoMetaData?.let { videoMetaDataDao.delete(it) }
+        videoMetaData?.let {
+            val videoMetaDataEntity = VideoMetaDataDomainToEntityMapper.map(it)
+            videoMetaDataDao.delete(videoMetaDataEntity)
+        }
     }
 
     override suspend fun deleteAllVideoMetaDataNotInTheList(videoUris: List<String>) {
@@ -46,10 +51,12 @@ class LocalVideoMetaDataRepository(
     }
 
     override suspend fun getAllVideoMetaData(): List<VideoMetaData> =
-        videoMetaDataDao.all()
+        videoMetaDataDao.all().map(VideoMetaDataEntityToDomainMapper::map)
+
 
     override suspend fun getVideoMetaDataByUri(videoUri: String): VideoMetaData? =
-        videoMetaDataDao.subsetByColumn("videoUri", videoUri).firstOrNull()
+        videoMetaDataDao.subsetByColumn("videoUri", videoUri)
+            .map(VideoMetaDataEntityToDomainMapper::map).firstOrNull()
 
     override fun getLifeCycleState(uri: String): Flow<VideoLifeCycle> =
         videoMetaDataDao.getLifeCycleState(uri).map { VideoLifeCycle.valueOf(it) }
@@ -57,6 +64,6 @@ class LocalVideoMetaDataRepository(
     override fun getWorkerId(uri: String): Flow<String?> =
         videoMetaDataDao.getWorkerId(uri)
 
-    override fun getAllPaged(): PagingSource<Int, VideoMetaData> =
+    override fun getAllPaged(): PagingSource<Int, com.cuju.videoSdk.db.entities.VideoMetaData> =
         videoMetaDataDao.pagingSource()
 }

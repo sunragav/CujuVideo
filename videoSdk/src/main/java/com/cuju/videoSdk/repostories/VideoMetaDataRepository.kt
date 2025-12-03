@@ -1,8 +1,8 @@
 package com.cuju.videoSdk.repostories
 
 import androidx.paging.PagingSource
-import com.cuju.videoSdk.db.entities.VideoMetaData
 import com.cuju.videoSdk.domain.models.VideoLifeCycle
+import com.cuju.videoSdk.domain.models.VideoMetaData
 import kotlinx.coroutines.flow.Flow
 
 interface VideoMetaDataRepository {
@@ -16,5 +16,5 @@ interface VideoMetaDataRepository {
     suspend fun getVideoMetaDataByUri(videoUri: String): VideoMetaData?
     fun getLifeCycleState(uri: String): Flow<VideoLifeCycle>
     fun getWorkerId(uri: String): Flow<String?>
-    fun getAllPaged(): PagingSource<Int, VideoMetaData>
+    fun getAllPaged(): PagingSource<Int, com.cuju.videoSdk.db.entities.VideoMetaData>
 }

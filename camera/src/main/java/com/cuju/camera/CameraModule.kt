@@ -1,5 +1,7 @@
 package com.cuju.camera
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import com.cuju.videoSdk.di.videoMetaDataModule
 import org.koin.core.module.dsl.viewModelOf
@@ -16,6 +18,7 @@ class CameraModule {
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @Composable
     fun CujuCameraHomeScreen(onBackClick: () -> Unit) =
         CameraHomeScreen(koinApplication = koinApplication, onBackClick = onBackClick)

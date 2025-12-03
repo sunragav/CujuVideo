@@ -2,7 +2,6 @@ package com.cuju.videoSdk.usecases
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.cuju.videoSdk.mappers.VideoMetaDataDomainToEntityMapper
 import com.cuju.videoSdk.repostories.VideoMetaDataRepository
 
 class PopulateVideoMetaDataDb(
@@ -13,10 +12,6 @@ class PopulateVideoMetaDataDb(
     suspend operator fun invoke() =
         getVideoMetaDataListFromTheAppDirectory().collect { videoMetaData ->
             videoMetaDataRepository.deleteAllVideoMetaDataNotInTheList(videoMetaData.map { it.videoUri })
-            videoMetaDataRepository.insertVideoMetaDataOrIgnore(
-                videoMetaData.map(
-                    VideoMetaDataDomainToEntityMapper::map
-                )
-            )
+            videoMetaDataRepository.insertVideoMetaDataOrIgnore(videoMetaData)
         }
 }
